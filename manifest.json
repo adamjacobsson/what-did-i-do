@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "What did i do?",
+    "version": "0.1.0",
+    "description": "What did i even do?",
+  
+    "author": "Adam",
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["contentscript.js"]
+      }
+    ],
+
+    "action": {
+        "default_popup": "./popup.html"
+    }
+  }

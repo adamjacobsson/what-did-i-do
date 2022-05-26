@@ -1,28 +1,25 @@
+function validatePageAndDoStuff(url, tabId) {
+    chrome.storage.local.get(null, function (result) {
+        if (new RegExp(result['lookForRe']).test(url)) {
+            console.log(url)
+            chrome.tabs.sendMessage(tabId, {
+                'url': url,
+                'xpath': result['lookForXPath']
+            }, function (res) { });
+        }
+    });
+}
+
+
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-    if (changeInfo.url) {
-        chrome.storage.local.get(null, function (result) {
-            if (new RegExp(result['lookForRe']).test(changeInfo.url)) {
-                console.log('yes')
-                chrome.tabs.sendMessage(tab.id, {
-                    'url': changeInfo.url,
-                    'xpath': result['lookForXPath']
-                }, function (res) { });
-            }
-        });
-    }
+    validatePageAndDoStuff(changeInfo.url, tabId)
 });
-
-
 
 chrome.tabs.onActivated.addListener(tab => {
     chrome.tabs.get(tab.tabId, current_tab_info => {
-        console.log(current_tab_info.url)
-        chrome.storage.local.get(['lookForRe'], function (result) {
-            console.log('OnTabActivated')
-        });
+        validatePageAndDoStuff(current_tab_info.url, tab.tabId)
     })
 })
-
 
 function startUp() {
     // Creates required storage items if they do not exist.

@@ -8,7 +8,6 @@ function tryGetValueFromXpath(xpath) {
 }
 
 function tryUpdateHistory(key, value) {
-    console.log(key + '   ' + value);
     var date = new Date().toISOString().split('T')[0];
     var obj_key = 'wdid_obj';
     try {
@@ -27,7 +26,6 @@ function tryUpdateHistory(key, value) {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     var pairWith = tryGetValueFromXpath(request.xpath)
     tryUpdateHistory(request.url, pairWith)
-    console.log(request)
     sendResponse({ status: 'OK' })
 });
 

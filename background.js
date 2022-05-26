@@ -1,7 +1,6 @@
 function validatePageAndDoStuff(url, tabId) {
     chrome.storage.local.get(null, function (result) {
         if (new RegExp(result['lookForRe']).test(url)) {
-            console.log(url)
             chrome.tabs.sendMessage(tabId, {
                 'url': url,
                 'xpath': result['lookForXPath']

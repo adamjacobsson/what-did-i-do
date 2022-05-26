@@ -26,13 +26,13 @@ document.getElementById('searchDateBtn').onclick = (e) => {
         var data = '';
         for (const [k, v] of Object.entries(result['wdid_obj'])) {
             if (v['date'] == searchFrom) {
-                data += k + '\n' + v['value'] + '\n\n';
+                data += k + '\n' + (v['value'] || '') + '\n\n';
             }
         }
 
         if (!data) {
-            window.confirm('Such empty')
-            return
+            window.confirm('Such empty');
+            return;
         }
         window.confirm(data)
     });

@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
-      min-width: 300px;
+      width: 600px;
       text-align: center;
     }
 
@@ -47,8 +47,8 @@
 
   <h2>What did i do?</h2>
 
-  <form id="reForm">
-    <div class="container">
+  <form id="popupForm">
+    <div class="container" id="popupContainer">
       <label for="regex"><b>Look for (regex):</b></label>
       <input id="reInput" type="text" placeholder="^(.*)$" name="regex">
       <label for="xpath"><b>Match with (xpath):</b></label>
@@ -58,6 +58,12 @@
       <label for="searchDate"><b>Search from:</b></label>
       <input id="searchDateInput" type="text" placeholder="2022-02-10" name="date">
       <button id="searchDateBtn" type="save">&#10003;</button>
+      
+      <label for="searchDate"><b>What you did:</b></label>
+      <table id="myTable">
+        <tr>
+        </tr>
+      </table>
     </div>
   </form>
 </body>
